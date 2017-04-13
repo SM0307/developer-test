@@ -1,19 +1,19 @@
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OrangeBricks.Web.Models
 {
-    public class Offer
+    public class Appointment
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public int Amount { get; set; }
+        public DateTime AppointmentDate { get; set; }
 
         [Required]
-        public OfferStatus Status { get; set; }
+        public AppointmentStatus Status { get; set; }
 
         [Required]
         public DateTime CreatedAt { get; set; }
@@ -21,7 +21,7 @@ namespace OrangeBricks.Web.Models
         [Required]
         public DateTime UpdatedAt { get; set; }
 
-        [Required]        
+        [Required]
         public int Property_Id { get; set; }
 
         [ForeignKey("Property_Id")]
