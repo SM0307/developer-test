@@ -1,4 +1,5 @@
 using OrangeBricks.Web.Models;
+using System.Threading.Tasks;
 
 namespace OrangeBricks.Web.Controllers.Property.Commands
 {
@@ -11,7 +12,7 @@ namespace OrangeBricks.Web.Controllers.Property.Commands
             _context = context;
         }
 
-        public void Handle(CreatePropertyCommand command)
+        public async Task Handle(CreatePropertyCommand command)
         {
             var property = new Models.Property
             {
@@ -25,7 +26,7 @@ namespace OrangeBricks.Web.Controllers.Property.Commands
 
             _context.Properties.Add(property);
 
-            _context.SaveChanges();
+            await _context.SaveChangesToDbAsync();
         }
     }
 }

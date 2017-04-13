@@ -44,7 +44,7 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Commands
 
             // Assert
             _context.Properties.Received(1).Find(1);
-            _context.Received(1).SaveChanges();
+            _context.Received(1).SaveChangesToDbAsync();
             Assert.True(property.IsListedForSale);
         }
     }

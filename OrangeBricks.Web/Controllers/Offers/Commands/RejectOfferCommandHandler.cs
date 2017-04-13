@@ -1,5 +1,6 @@
 using System;
 using OrangeBricks.Web.Models;
+using System.Threading.Tasks;
 
 namespace OrangeBricks.Web.Controllers.Offers.Commands
 {
@@ -12,14 +13,14 @@ namespace OrangeBricks.Web.Controllers.Offers.Commands
             _context = context;
         }
 
-        public void Handle(RejectOfferCommand command)
+        public async Task Handle(RejectOfferCommand command)
         {
             var offer = _context.Offers.Find(command.OfferId);
 
             offer.UpdatedAt = DateTime.Now;
             offer.Status = OfferStatus.Rejected;
 
-            _context.SaveChanges();
+            await _context.SaveChangesToDbAsync();
         }
     }
 }

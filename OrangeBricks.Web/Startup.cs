@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(OrangeBricks.Web.Startup))]

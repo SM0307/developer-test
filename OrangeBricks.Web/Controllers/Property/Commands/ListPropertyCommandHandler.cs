@@ -1,4 +1,5 @@
 using OrangeBricks.Web.Models;
+using System.Threading.Tasks;
 
 namespace OrangeBricks.Web.Controllers.Property.Commands
 {
@@ -11,11 +12,11 @@ namespace OrangeBricks.Web.Controllers.Property.Commands
             _context = context;
         }
 
-        public void Handle(ListPropertyCommand command)
+        public async Task Handle(ListPropertyCommand command)
         {
             var property = _context.Properties.Find(command.PropertyId);
             property.IsListedForSale = true;
-            _context.SaveChanges();
+            await _context.SaveChangesToDbAsync();
         }
     }
 }

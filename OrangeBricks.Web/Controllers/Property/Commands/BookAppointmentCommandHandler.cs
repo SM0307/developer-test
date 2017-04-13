@@ -16,7 +16,7 @@ namespace OrangeBricks.Web.Controllers.Property.Commands
             _context = context;
         }
 
-        public void Handle(BookApointmentCommand command)
+        public async Task Handle(BookApointmentCommand command)
         {
             var property = _context.Properties.Find(command.PropertyId);
 
@@ -36,7 +36,7 @@ namespace OrangeBricks.Web.Controllers.Property.Commands
 
             property.Appointments.Add(appointment);
 
-            _context.SaveChanges();
+            await _context.SaveChangesToDbAsync();
         }
     }
 }

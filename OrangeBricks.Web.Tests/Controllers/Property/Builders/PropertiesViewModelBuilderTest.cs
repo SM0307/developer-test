@@ -5,6 +5,8 @@ using NSubstitute;
 using NUnit.Framework;
 using OrangeBricks.Web.Controllers.Property.Builders;
 using OrangeBricks.Web.Models;
+using AutoMapper;
+using OrangeBricks.Web.Controllers.Property.ViewModels;
 
 namespace OrangeBricks.Web.Tests.Controllers.Property.Builders
 {
@@ -45,6 +47,11 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Builders
             var mockSet = Substitute.For<IDbSet<Models.Property>>()
                 .Initialize(properties.AsQueryable());
 
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<Models.Property, PropertyViewModel>().ReverseMap();
+            });
+
             _context.Properties.Returns(mockSet);
 
             var query = new PropertiesQuery
@@ -72,6 +79,11 @@ namespace OrangeBricks.Web.Tests.Controllers.Property.Builders
 
             var mockSet = Substitute.For<IDbSet<Models.Property>>()
                 .Initialize(properties.AsQueryable());
+
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<Models.Property, PropertyViewModel>().ReverseMap();
+            });
 
             _context.Properties.Returns(mockSet);
 

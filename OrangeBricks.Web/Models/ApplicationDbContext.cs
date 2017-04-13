@@ -1,6 +1,7 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Threading.Tasks;
 
 namespace OrangeBricks.Web.Models
 {
@@ -19,9 +20,10 @@ namespace OrangeBricks.Web.Models
         public IDbSet<Property> Properties { get; set; }
         public IDbSet<Offer> Offers { get; set; }
 
-        public new void SaveChanges()
+        public async Task<int> SaveChangesToDbAsync()
         {
-            base.SaveChanges();
+            int saved = await base.SaveChangesAsync();
+            return saved;
         }
     }
 
@@ -30,6 +32,6 @@ namespace OrangeBricks.Web.Models
         IDbSet<Property> Properties { get; set; }
         IDbSet<Offer> Offers { get; set; }
 
-        void SaveChanges();
+        Task<int> SaveChangesToDbAsync();
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using OrangeBricks.Web.Models;
+using System.Threading.Tasks;
 
 namespace OrangeBricks.Web.Controllers.Property.Commands
 {
@@ -13,7 +14,7 @@ namespace OrangeBricks.Web.Controllers.Property.Commands
             _context = context;
         }
 
-        public void Handle(MakeOfferCommand command)
+        public async Task Handle(MakeOfferCommand command)
         {
             var property = _context.Properties.Find(command.PropertyId);
 
@@ -33,7 +34,7 @@ namespace OrangeBricks.Web.Controllers.Property.Commands
                 
             property.Offers.Add(offer);
             
-            _context.SaveChanges();
+            await _context.SaveChangesToDbAsync();
         }
     }
 }
